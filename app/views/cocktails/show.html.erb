@@ -1,1 +1,33 @@
-show.html.erb
+<p>
+  <strong>Name:</strong>
+  <%= @cocktail.name %>
+</p>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Ingredients:</th>
+      <th>Description:</th>
+    </tr>
+  </thead>
+
+  <tbody>
+     <% @cocktail.doses.each do |dose| %>
+    <tr>
+      <td><%= dose.ingredient.name %></td>
+      <td><%= dose.description %></td>
+      <td><%= link_to 'Destroy', dose, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<br>
+
+<%= link_to 'Add ingredients', new_cocktail_dose_path(@cocktail)%>
+
+<br>
+
+<%= link_to 'See all Cocktails', cocktails_path%>
